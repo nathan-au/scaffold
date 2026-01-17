@@ -76,7 +76,7 @@ export default function Page() {
       (
         <div className="">
           <div className="tabs tabs-border flex justify-center">
-            <Link href="../auth/who" className="btn btn-square btn-ghost absolute left-0"><img className="w-5" src="https://img.icons8.com/?size=100&id=92220&format=png&color=000000" alt="Who" /></Link>
+            <Link href="../auth/who" className="btn btn-square btn-ghost absolute left-0"><img className="w-5" src="https://img.icons8.com/?size=100&id=115603&format=png&color=000000" alt="Who" /></Link>
 
             {children.map((child, i) => (
               <React.Fragment key={child.id}>
@@ -234,15 +234,17 @@ export default function Page() {
           <dialog id="view_activity_modal" className="modal">
             {selectedActivity && (
               <div className="modal-box">
-                <h3 className="font-bold text-lg pb-4">{selectedActivity.title}</h3>
+                <h3 className="font-bold text-lg pb-4">{selectedActivity.title} Activity</h3>
                 {selectedActivity.questions.map((question: any) => (
-                  <div key={question.id}>
-                    {question.id}. {question.prompt}
-                    <ul className="list-disc pl-5">
-                      {question.choices.map((choice: any) => (
-                        <li key={choice} className={choice == question.answer ? "text-success" : ""}>{choice}</li>
+                  <div key={question.id} className="mt-2">
+                    <p>{question.id}. {question.prompt}</p>
+                    <div className="ml-4">
+                      {question.choices.map((choice: any, i: number) => (
+                        <span key={choice} className={choice == question.answer ? "text-success" : ""}>{choice}{i < question.choices.length - 1 ? ", " : ""}</span>
                       ))}
-                    </ul>
+
+                    </div>
+                    
                   </div>
                 ))}
               </div>
@@ -251,6 +253,7 @@ export default function Page() {
               <button>close</button>
             </form>
           </dialog>
+
 
           <dialog id="edit_activity_modal" className="modal">
             {selectedActivity && (
