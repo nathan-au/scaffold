@@ -10,7 +10,7 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: "Scaffold Bee",
+  title: "Scaffold",
 };
 
 export default function RootLayout({
