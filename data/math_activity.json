@@ -1,0 +1,35 @@
+{
+  "activity_title": "Math Activity",
+  "questions": [
+    {
+      "id": 1,
+      "prompt": "What is 4 + 3?",
+      "choices": [6, 7, 8, 9],
+      "answer": 7
+    },
+    {
+      "id": 2,
+      "prompt": "What is 6 + 2?",
+      "choices": [7, 8, 9, 10],
+      "answer": 8
+    },
+    {
+      "id": 3,
+      "prompt": "What is 5 + 5?",
+      "choices": [9, 10, 11, 12],
+      "answer": 10
+    },
+    {
+      "id": 4,
+      "prompt": "What is 3 + 6?",
+      "choices": [8, 9, 10, 11],
+      "answer": 9
+    },
+    {
+      "id": 5,
+      "prompt": "What is 7 + 1?",
+      "choices": [6, 7, 8, 9],
+      "answer": 8
+    }
+  ]
+}

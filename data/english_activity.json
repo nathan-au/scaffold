@@ -1,0 +1,40 @@
+{
+  "activity_title": "English Activity",
+  "questions": [
+    {
+      "id": 1,
+      "prompt": "Which word is a color?",
+      "choices": ["dog", "red", "run", "ball"],
+      "answer": "red"
+    },
+    {
+      "id": 2,
+      "prompt": "Which word rhymes with 'cat'?",
+      "choices": ["hat", "sun", "cup", "dog"],
+      "answer": "hat"
+    },
+    {
+      "id": 3,
+      "prompt": "Which word is an animal?",
+      "choices": ["chair", "cat", "book", "pen"],
+      "answer": "cat"
+    },
+    {
+      "id": 4,
+      "prompt": "Which sentence is correct?",
+      "choices": [
+        "I like apples.",
+        "I like apple.",
+        "I likes apples.",
+        "I liking apples."
+      ],
+      "answer": "I like apples."
+    },
+    {
+      "id": 5,
+      "prompt": "Which word is something you can eat?",
+      "choices": ["apple", "car", "shoe", "tree"],
+      "answer": "apple"
+    }
+  ]
+}
