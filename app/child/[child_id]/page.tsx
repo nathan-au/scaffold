@@ -27,7 +27,7 @@ export default function Page() {
       setFirstName(data?.first_name)
       setTotalStars(data?.total_stars)
       setActivities(data?.activities?.filter((a: any) => !a.completed) ?? [])
-      setRewards(data?.rewards?.filter((r: any) => !r.completed) ?? [])
+      setRewards(data?.rewards?.filter((r: any) => !r.earned) ?? [])
       setLoading(false)
     }
     fetchChild()
@@ -40,48 +40,50 @@ export default function Page() {
         <div className="min-h-screen flex flex-col items-center justify-center">
           <span className="loading loading-bars loading-xl text-primary"></span>
         </div>
-      ) : 
-      (
-        <div className="min-h-screen justify-center items-center flex flex-col gap-5">
-          <h1 className="text-6xl">Hi, {firstName}</h1>
-          <div className="stats shadow">
+      ) :
+        (
+          <div className="min-h-screen justify-center items-center flex flex-col gap-5">
+            <Link href="../auth/signout" className="btn btn-square btn-ghost absolute right-0 top-0"><img className="w-5" src="https://img.icons8.com/?size=100&id=82792&format=png&color=000000" alt="Sign Out" /></Link>
 
-            <div className="stat">
-              <div className="stat-figure">
-                <img src="https://img.icons8.com/?size=100&id=85448&format=png&color=fdc700" alt="Star" className="w-10" />
+            <h1 className="text-6xl">Hi, {firstName}</h1>
+            <div className="stats shadow">
+
+              <div className="stat">
+                <div className="stat-figure">
+                  <img src="https://img.icons8.com/?size=100&id=85448&format=png&color=fdc700" alt="Star" className="w-10" />
+                </div>
+                <div className="stat-title">Stars</div>
+                <div className="stat-value">{totalStars}</div>
               </div>
-              <div className="stat-title">Stars</div>
-              <div className="stat-value">{totalStars}</div>
             </div>
-          </div>
-          <div className="flex flex-row gap-5">
-            {activities.map((activity) => (
-              <Link href={`../../activity/${activity.id}`} key={activity.id} className="btn w-100 h-50 text-3xl">
-                {activity.title}
-              </Link>
-            ))}
-          </div>
-          <ul className="list bg-base-100 rounded-box shadow-md flex-auto">
+            <div className="flex flex-row gap-5">
+              {activities.map((activity) => (
+                <Link href={`../../activity/${activity.id}`} key={activity.id} className="btn w-100 h-50 text-3xl">
+                  {activity.title}
+                </Link>
+              ))}
+            </div>
+            <ul className="list bg-base-100 rounded-box shadow-md flex-auto">
 
-            <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">Rewards Progress</li>
-            {rewards.map((reward) => (
-              <li key={reward.id} className="list-row">
-                <div>
-                  <div>{reward.title}</div>
-                  <div className="text-xs font-semibold opacity-60">{reward.star_cost} Stars</div>
-                </div>
-                <div className="flex flex-row ml-auto">
-                  <progress className="progress progress-primary w-56" value={totalStars / reward.star_cost * 100} max="100"></progress>
-                </div>
-              </li>
-            ))}
+              <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">Rewards Progress</li>
+              {rewards.map((reward) => (
+                <li key={reward.id} className="list-row">
+                  <div>
+                    <div>{reward.title}</div>
+                    <div className="text-xs font-semibold opacity-60">{reward.star_cost} Stars</div>
+                  </div>
+                  <div className="flex flex-row ml-auto">
+                    <progress className="progress progress-primary w-56" value={totalStars / reward.star_cost * 100} max="100"></progress>
+                  </div>
+                </li>
+              ))}
             </ul>
-        </div>
-      )}
+          </div>
+        )}
 
     </div>
 
-    
-    
+
+
   )
 }

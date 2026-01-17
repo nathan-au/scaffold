@@ -36,10 +36,13 @@ export default function Page() {
     fetchActivity()
   }, [activityId])
 
-  const handleNext = () => {
+  const handleNext = async () => {
     const currentQuestion = activityQuestions[currentQuestionIndex]
-    if (selectedChoice == currentQuestion.answer) {
-      setScore(score + 1)
+    const isCorrect = selectedChoice == currentQuestion.answer
+    const nextScore = isCorrect ? score + 1 : score
+
+    if (isCorrect) {
+      setScore(nextScore)
     }
 
     setSelectedChoice(null)
@@ -47,6 +50,32 @@ export default function Page() {
       setActivityFinished(true)
       setActivityStarted(false)
       setCurrentQuestionIndex(0)
+
+      const { data: activityData } = await supabase
+        .from('activities')
+        .select('completed')
+        .eq('id', activityId)
+        .single()
+
+      if (activityData && !activityData.completed) {
+        await supabase
+          .from('activities')
+          .update({ completed: true })
+          .eq('id', activityId)
+
+        const { data: childData } = await supabase
+          .from('children')
+          .select('total_stars')
+          .eq('id', activityChildId)
+          .single()
+
+        if (childData) {
+          await supabase
+            .from('children')
+            .update({ total_stars: childData.total_stars + nextScore })
+            .eq('id', activityChildId)
+        }
+      }
     }
     else {
       setCurrentQuestionIndex(currentQuestionIndex + 1)

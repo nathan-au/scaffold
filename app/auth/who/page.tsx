@@ -14,7 +14,7 @@ export default function Page() {
       const { data } = await supabase
         .from("children")
         .select("id, first_name")
-
+        .order("first_name")
       setChildren(data ?? [])
       setLoading(false)
     }
