@@ -4,7 +4,7 @@ export default function Page() {
   return (
     <div>
       <div className="hero bg-base-200 min-h-screen w-full">
-        <div className="navbar bg-base-100 shadow-sm absolute top-0">
+        <div className="navbar bg-base-100 shadow absolute top-0">
           <div className="navbar-start">
             
             <a className="btn btn-ghost text-xl">Scaffold</a>
@@ -33,34 +33,52 @@ export default function Page() {
         </div>
       </div>
       <div className="flex flex-col items-center w-full gap-5 p-10">
+
+        <div className="mockup-browser border-base-300 border w-full">
+          <div className="mockup-browser-toolbar">
+            <div className="input">https://mykidsknowtoomuchbrainrot.tech/</div>
+          </div>
+          <div className="grid place-content-center border-t border-base-300 h-80">Hello!</div>
+        </div>
         
         <h2 className="text-5xl">Too Much Roblox, Not Enough Knowledge</h2>
 
-        <div className="grid grid-cols-2 gap-5">
-          <div className="card bg-base-100 w-96 shadow-sm">
+        <div className=" flex flex-col gap-5">
+          <div className="card bg-base-100 w-96 shadow">
             <div className="card-body">
-              <h2 className="card-title">Card title!</h2>
-              <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+              <h2 className="card-title">Short, Fun Activities</h2>
+              <p>5-10 minute sessions for independent practice</p>
             </div>
           </div>
-          <div className="card bg-base-100 w-96 shadow-sm">
+
+          <div className="card bg-base-100 w-96 shadow">
             <div className="card-body">
-              <h2 className="card-title">Card title!</h2>
-              <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+              <h2 className="card-title">Effort-Based Rewards</h2>
+              <p>Surprise and consistent rewards for completing tasks</p>
             </div>
           </div>
-          <div className="card bg-base-100 w-96 shadow-sm">
+
+          <div className="card bg-base-100 w-96 shadow">
             <div className="card-body">
-              <h2 className="card-title">Card title!</h2>
-              <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+              <h2 className="card-title">Parent Control & Privacy</h2>
+              <p>No ads, no hidden fees, full control over subjects and rewards</p>
             </div>
           </div>
-          <div className="card bg-base-100 w-96 shadow-sm">
+
+          <div className="card bg-base-100 w-96 shadow">
             <div className="card-body">
-              <h2 className="card-title">Card title!</h2>
-              <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+              <h2 className="card-title">Curriculum-Aligned Practice</h2>
+              <p>Focused on Math, English, and Science</p>
             </div>
           </div>
+
+          <div className="card bg-base-100 w-96 shadow">
+            <div className="card-body">
+              <h2 className="card-title">Immediate Positive Feedback</h2>
+              <p>Children are encouraged, not judged</p>
+            </div>
+          </div>
+
 
         </div>
 

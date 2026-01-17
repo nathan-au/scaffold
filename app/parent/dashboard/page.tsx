@@ -110,7 +110,7 @@ export default function Page() {
                     </div>
 
                     <div className="flex flex-row gap-5 w-full">
-                      <ul className="list bg-base-100 rounded-box shadow-md flex-auto">
+                      <ul className="list bg-base-100 rounded-box shadow flex-auto">
 
                         <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">Upcoming Activities</li>
 
@@ -141,7 +141,7 @@ export default function Page() {
 
                       </ul>
 
-                      <ul className="list bg-base-100 rounded-box shadow-md flex-auto">
+                      <ul className="list bg-base-100 rounded-box shadow flex-auto">
 
                         <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">Available Rewards</li>
 
@@ -156,7 +156,6 @@ export default function Page() {
                               <button className="btn btn-square btn-ghost" onClick={() => handleDeleteReward(reward.id)}>
                                 <img className="w-5" src="https://img.icons8.com/?size=100&id=99933&format=png&color=000000" alt="Delete" />
                               </button>
-
                             </div>
                           </li>
 

@@ -22,11 +22,15 @@ export default function Page() {
         .from('children')
         .select('first_name, total_stars, activities(id, title, completed), rewards(id, title, star_cost, earned)')
         .eq('id', childId)
+        .order('star_cost', { 
+          referencedTable: 'rewards',
+          ascending: true 
+        })
         .single()
 
       setFirstName(data?.first_name)
       setTotalStars(data?.total_stars)
-      setActivities(data?.activities?.filter((a: any) => !a.completed) ?? [])
+      setActivities(data?.activities?.filter((a: any) => !a.completed).splice(0, 4) ?? [])
       setRewards(data?.rewards?.filter((r: any) => !r.earned) ?? [])
       setLoading(false)
     }
@@ -45,39 +49,49 @@ export default function Page() {
           <div className="min-h-screen justify-center items-center flex flex-col gap-5">
             <Link href="../auth/signout" className="btn btn-square btn-ghost absolute right-0 top-0"><img className="w-5" src="https://img.icons8.com/?size=100&id=82792&format=png&color=000000" alt="Sign Out" /></Link>
 
-            <h1 className="text-6xl">Hi, {firstName}</h1>
-            <div className="stats shadow">
-
-              <div className="stat">
-                <div className="stat-figure">
-                  <img src="https://img.icons8.com/?size=100&id=85448&format=png&color=fdc700" alt="Star" className="w-10" />
+            <h1 className="text-6xl font-bold">Hi, {firstName}!</h1>
+            <div className="join shadow rounded-xl items-start">
+              <div className="stats join-item">
+                <div className="stat">
+                  <div className="stat-figure">
+                    <img src="https://img.icons8.com/?size=100&id=85448&format=png&color=fdc700" alt="Star" className="w-10" />
+                  </div>
+                  <div className="stat-value">{totalStars}</div>
                 </div>
-                <div className="stat-title">Stars</div>
-                <div className="stat-value">{totalStars}</div>
               </div>
+              <ul className="list bg-base-100 rounded-box join-item">
+                {rewards.map((reward) => (
+                  <li key={reward.id} className="list-row items-center">
+                    <div>
+                      <div>{reward.title}</div>
+                      <div className="text-xs font-semibold opacity-60">{reward.star_cost} Stars</div>
+                    </div>
+                    
+                    <div className="flex flex-row ml-auto items-center gap-2">
+                      <progress className="progress progress-primary w-56" value={totalStars / reward.star_cost * 100} max="100"></progress>
+                      {totalStars >= reward.star_cost && (
+                        <button className="btn btn-square btn-ghost">
+                          <img className="w-5" src="https://img.icons8.com/?size=100&id=85026&format=png&color=000000" alt="Redeem" />
+                        </button>
+                      )} 
+                    </div>
+
+                    
+                  </li>
+                ))}
+              </ul>
+
             </div>
+            
+            <h2 className="text-3xl">Your Activities</h2>
             <div className="flex flex-row gap-5">
               {activities.map((activity) => (
-                <Link href={`../../activity/${activity.id}`} key={activity.id} className="btn w-100 h-50 text-3xl">
+                <Link href={`../../activity/${activity.id}`} key={activity.id} className="btn btn-outline w-100 h-50 text-4xl">
                   {activity.title}
                 </Link>
               ))}
             </div>
-            <ul className="list bg-base-100 rounded-box shadow-md flex-auto">
-
-              <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">Rewards Progress</li>
-              {rewards.map((reward) => (
-                <li key={reward.id} className="list-row">
-                  <div>
-                    <div>{reward.title}</div>
-                    <div className="text-xs font-semibold opacity-60">{reward.star_cost} Stars</div>
-                  </div>
-                  <div className="flex flex-row ml-auto">
-                    <progress className="progress progress-primary w-56" value={totalStars / reward.star_cost * 100} max="100"></progress>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            
           </div>
         )}
 

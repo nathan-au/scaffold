@@ -119,7 +119,7 @@ export default function Page() {
   else {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-5">
-        <h1 className="text-4xl">{activityTitle}</h1>
+        <h1 className="text-4xl">{activityTitle} Activity</h1>
         <button onClick={() => setActivityStarted(true)} className="btn btn-primary">Start Activity</button>
         <Link href={`../../child/${activityChildId}`} className="btn btn-primary btn-outline">Back to Dashboard</Link>
       </div>
