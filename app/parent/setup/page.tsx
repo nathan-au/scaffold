@@ -1,49 +1,52 @@
-"use client"
+'use client'
 
-import Link from 'next/link'
 import { useState } from 'react'
-
+import { supabase } from '../../../lib/supabase/client'
+import { useRouter } from 'next/navigation'
 
 export default function Page() {
 
-  const [english, setEnglish] = useState(true)
-  const [math, setMath] = useState(true)
-  const [science, setScience] = useState(true)
+  const [firstName, setFirstName] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const router = useRouter()
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setLoading(true)
+
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+      return
+    }
+
+    const { error } = await supabase.from('children').insert([{ 
+      first_name: firstName, 
+      parent_id: user.id,
+    }])
+    
+    if (error) {
+      setLoading(false)
+    } else {
+      router.push('/parent/dashboard')
+    }
+
+  }
 
   return (
     
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-100 border p-4">
+      <form className="fieldset bg-base-200 border-base-300 rounded-box w-100 border p-4" onSubmit={handleSubmit}>
         <legend className="fieldset-legend">Child Profile</legend>
 
         <label className="label">First Name</label>
-        <input type="text" className="input" placeholder="Full Name" />
+        <input type="text" className="input w-full" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
 
-        <label className="label">Age</label>
-        <input type="number" className="input validator" required placeholder="Age (1-10)" min="1" max="10"/>
-      </fieldset>
-
-      <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-100 border p-4">
-        <legend className="fieldset-legend">Subject Options</legend>
-
-        <label className="label cursor-pointer">
-          <input type="checkbox" className="toggle" checked={english} onChange={() => setEnglish(!english)}/>
-          <span className="ml-2">English</span>
-        </label>
-
-        <label className="label cursor-pointer">
-          <input type="checkbox" className="toggle" checked={math} onChange={() => setMath(!math)}/>
-          <span className="ml-2">Math</span>
-        </label>
-
-        <label className="label cursor-pointer">
-          <input type="checkbox" className="toggle" checked={science} onChange={() => setScience(!science)}/>
-          <span className="ml-2">Science</span>
-        </label>
-
-
-      </fieldset>
-      <Link href="dashboard" className="btn btn-primary mt-4">Continue</Link>
+        <button type="submit" className="btn btn-primary mt-4" disabled={loading}>
+          {loading ? 'Loading...' : 'Continue'}
+        </button>
+      </form>
 
     </div>
   )

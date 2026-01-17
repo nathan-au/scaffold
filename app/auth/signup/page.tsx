@@ -11,7 +11,7 @@ export default function Page() {
 
   const router = useRouter()
 
-  async function handleSignUp(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
 
@@ -21,7 +21,6 @@ export default function Page() {
     })
 
     if (error) {
-      alert(error.message)
       setLoading(false)
     } else {
       router.push('/parent/setup')
@@ -31,7 +30,7 @@ export default function Page() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
 
-      <form className="fieldset bg-base-200 border-base-300 rounded-box w-100 border p-4" onSubmit={handleSignUp}>
+      <form className="fieldset bg-base-200 border-base-300 rounded-box w-100 border p-4" onSubmit={handleSubmit}>
         
         <legend className="fieldset-legend">Parent Sign Up</legend>
 
