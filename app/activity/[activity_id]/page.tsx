@@ -103,15 +103,17 @@ export default function Page() {
   else if (activityStarted) {
     const currentQuestion = activityQuestions[currentQuestionIndex]
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-        <h1 className="text-5xl">{currentQuestion.prompt}</h1>
+      <div className="min-h-screen flex flex-col items-center justify-center gap-5">
+        <p>Question {currentQuestionIndex + 1} of {activityQuestions.length}</p>
+        <progress className="progress progress-primary w-150 progress-xl h-10" value={currentQuestionIndex / activityQuestions.length * 100} max="100"></progress>
+        <h1 className="text-6xl font-bold">{currentQuestion.prompt}</h1>
 
         <div className="grid grid-cols-2 gap-4">
           {currentQuestion.choices.map((choice: string | number) => (
-            <button key={currentQuestionIndex + "-" + choice} onClick={() => setSelectedChoice(choice)} className={`w-150 h-75 text-7xl btn btn-info ${selectedChoice == choice ? "" : "btn-outline"}`}>{choice}</button>
+            <button key={currentQuestionIndex + "-" + choice} onClick={() => setSelectedChoice(choice)} className={`w-75 h-50 text-4xl btn btn-primary ${selectedChoice == choice ? "btn-info" : "btn-outline"}`}>{choice}</button>
           ))}
         </div>
-        <button onClick={handleNext} disabled={selectedChoice == null} className="btn btn-primary btn-wide">Next</button>
+        <button onClick={handleNext} disabled={selectedChoice == null} className="btn btn-primary w-60 h-20 text-2xl">Next</button>
 
       </div>
     )
@@ -119,8 +121,8 @@ export default function Page() {
   else {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-5">
-        <h1 className="text-4xl">{activityTitle} Activity</h1>
-        <button onClick={() => setActivityStarted(true)} className="btn btn-primary">Start Activity</button>
+        <h1 className="text-6xl">{activityTitle} Activity</h1>
+        <button onClick={() => setActivityStarted(true)} className="btn btn-primary w-50 h-25 text-4xl">Start</button>
         <Link href={`../../child/${activityChildId}`} className="btn btn-primary btn-outline">Back to Dashboard</Link>
       </div>
     )

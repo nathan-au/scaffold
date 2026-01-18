@@ -35,7 +35,7 @@ export default function Page() {
           <p className="text-5xl">Who's learning?</p>
           <div className="flex flex-row gap-5">
             {children.map((child) => (
-              <Link href={`/child/${child.id}`} className="w-50 h-50 text-3xl btn btn-primary" key={child.id}>{child.first_name}</Link>
+              <Link href={`/child/${child.id}`} className="w-60 h-30 text-3xl btn btn-primary" key={child.id}>{child.first_name}</Link>
             ))}
           </div>
           <Link href="../../parent/dashboard" className="btn-wide btn btn-primary" key={"parent"}>{"Parent"}</Link>

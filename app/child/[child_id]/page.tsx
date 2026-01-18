@@ -39,9 +39,13 @@ export default function Page() {
 
   return (
 
+    // <div 
+    //   className="min-h-screen bg-cover bg-center bg-fixed bg-no-repeat" 
+    //   style={{ backgroundImage: `url('https://static.vecteezy.com/system/resources/previews/020/547/709/non_2x/honeycomb-or-beehive-with-bees-on-light-yellow-background-background-vector.jpg')` }}
+    // >
     <div>
       {loading ? (
-        <div className="min-h-screen flex flex-col items-center justify-center">
+        <div className="min-h-screen flex flex-col items-center justify-center" >
           <span className="loading loading-bars loading-xl text-primary"></span>
         </div>
       ) :
@@ -50,7 +54,7 @@ export default function Page() {
             <Link href="../auth/signout" className="btn btn-square btn-ghost absolute right-0 top-0"><img className="w-5" src="https://img.icons8.com/?size=100&id=82792&format=png&color=000000" alt="Sign Out" /></Link>
 
             <h1 className="text-6xl font-bold">Hi, {firstName}!</h1>
-            <div className="join shadow rounded-xl items-start">
+            <div className="join shadow rounded-xl items-start bg-base-100">
               <div className="stats join-item">
                 <div className="stat">
                   <div className="stat-figure">
@@ -86,7 +90,7 @@ export default function Page() {
             <h2 className="text-3xl">Your Activities</h2>
             <div className="flex flex-row gap-5">
               {activities.map((activity) => (
-                <Link href={`../../activity/${activity.id}`} key={activity.id} className="btn btn-outline w-100 h-50 text-4xl">
+                <Link href={`../../activity/${activity.id}`} key={activity.id} className="btn btn-primary w-100 h-50 text-4xl">
                   {activity.title}
                 </Link>
               ))}
