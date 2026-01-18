@@ -30,7 +30,7 @@ export default function Page() {
               <Image src="/bee.png" alt="Bee" fill></Image>
             </div>
             <p className="text-8xl">Turn Screen Time Into Learning Time</p>
-            <p className="text-4xl">Scaffold is a reward-based learning reinforcement platform that transforms idle screen time into meaningful growth.</p>
+            <p className="text-4xl">Scaffold is a reward-based learning reinforcement platform for kids that transforms idle screen time into meaningful growth.</p>
             
               <Link href="auth/signup" className="btn btn-primary">Get Started For FREE</Link>
           </div>
