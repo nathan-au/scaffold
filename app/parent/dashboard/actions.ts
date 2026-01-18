@@ -8,7 +8,7 @@ export async function generateQuiz(prompt: string) {
     try {
         console.log("Generating quiz message sent to AI...");
         const response = await ai.models.generateContent({
-            model: "gemini-3-flash-preview", // Using the latest recommended model
+            model: "gemini-2.5-flash",
             contents: `Generate a short quiz based on the following prompt: "${prompt}". 
           
           Example format:
