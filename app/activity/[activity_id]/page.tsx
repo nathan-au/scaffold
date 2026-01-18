@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { useParams } from "next/navigation"
 import { supabase } from "../../../lib/supabase/client"
 import Link from 'next/link'
+import { generateTTS } from "./actions"
 
 export default function Page() {
   const params = useParams()
@@ -82,6 +83,16 @@ export default function Page() {
     }
   }
 
+  const handlePlayTTS = async (text: string) => {
+    try {
+      const base64 = await generateTTS(text);
+      const audio = new Audio(`data:audio/mp3;base64,${base64}`);
+      audio.play();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center">
@@ -94,9 +105,9 @@ export default function Page() {
   if (activityFinished) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-5">
-        <h1 className="text-4xl">Activity complete!</h1>
-        <h2 className="text-2xl">Score: {score} / {activityQuestions?.length}</h2>
-        <Link href={`../../child/${activityChildId}`} className="btn btn-primary btn-outline">Back to Dashboard</Link>
+        <h1 className="text-4xl">Activity complete.</h1>
+        <h2 className="text-6xl text-primary">You earned {score} Stars!</h2>
+        <Link href={`../../child/${activityChildId}`} className="btn btn-primary">Continue</Link>
       </div>
     )
   }
@@ -106,11 +117,23 @@ export default function Page() {
       <div className="min-h-screen flex flex-col items-center justify-center gap-5">
         <p>Question {currentQuestionIndex + 1} of {activityQuestions.length}</p>
         <progress className="progress progress-primary w-150 progress-xl h-10" value={currentQuestionIndex / activityQuestions.length * 100} max="100"></progress>
-        <h1 className="text-6xl font-bold">{currentQuestion.prompt}</h1>
+        <div className="flex flex-row items-center gap-4 text-center">
+          <h1 className="text-6xl font-bold">{currentQuestion.prompt}</h1>
+        </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <button className="btn btn-ghost btn-circle btn-lg" onClick={() => handlePlayTTS(currentQuestion.prompt)}>
+            <img className="w-10" src="https://img.icons8.com/?size=100&id=101936&format=png&color=000000" alt="Speak" />
+        </button>
+
+        <div className="grid grid-cols-2 gap-5">
           {currentQuestion.choices.map((choice: string | number) => (
-            <button key={currentQuestionIndex + "-" + choice} onClick={() => setSelectedChoice(choice)} className={`w-75 h-50 text-4xl btn btn-primary ${selectedChoice == choice ? "btn-info" : "btn-outline"}`}>{choice}</button>
+              <button
+                key={currentQuestionIndex + "-" + choice}
+                onClick={() => setSelectedChoice(choice)}
+                className={`w-60 h-30 text-4xl btn btn-primary ${selectedChoice == choice ? "" : "btn-outline"}`}
+              >
+                {choice}
+              </button>
           ))}
         </div>
         <button onClick={handleNext} disabled={selectedChoice == null} className="btn btn-primary w-60 h-20 text-2xl">Next</button>
@@ -122,8 +145,8 @@ export default function Page() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-5">
         <h1 className="text-6xl">{activityTitle} Activity</h1>
-        <button onClick={() => setActivityStarted(true)} className="btn btn-primary w-50 h-25 text-4xl">Start</button>
-        <Link href={`../../child/${activityChildId}`} className="btn btn-primary btn-outline">Back to Dashboard</Link>
+        <button onClick={() => setActivityStarted(true)} className="btn btn-primary w-150 h-25 text-4xl">Start</button>
+        <Link href={`../../child/${activityChildId}`} className="btn btn-ghost">Go Back</Link>
       </div>
     )
   }

@@ -41,7 +41,7 @@ export default function Page() {
         <legend className="fieldset-legend">Child Profile</legend>
 
         <label className="label">First Name</label>
-        <input type="text" className="input w-full" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
+        <input type="text" className="input w-full" placeholder="e.g. Jessica" value={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
 
         <button type="submit" className="btn btn-primary mt-4" disabled={loading}>
           {loading ? 'Loading...' : 'Continue'}

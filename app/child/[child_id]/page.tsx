@@ -39,10 +39,6 @@ export default function Page() {
 
   return (
 
-    // <div 
-    //   className="min-h-screen bg-cover bg-center bg-fixed bg-no-repeat" 
-    //   style={{ backgroundImage: `url('https://static.vecteezy.com/system/resources/previews/020/547/709/non_2x/honeycomb-or-beehive-with-bees-on-light-yellow-background-background-vector.jpg')` }}
-    // >
     <div>
       {loading ? (
         <div className="min-h-screen flex flex-col items-center justify-center" >
@@ -73,11 +69,17 @@ export default function Page() {
                     
                     <div className="flex flex-row ml-auto items-center gap-2">
                       <progress className="progress progress-primary w-56" value={totalStars / reward.star_cost * 100} max="100"></progress>
-                      {totalStars >= reward.star_cost && (
-                        <button className="btn btn-square btn-ghost">
-                          <img className="w-5" src="https://img.icons8.com/?size=100&id=85026&format=png&color=000000" alt="Redeem" />
-                        </button>
-                      )} 
+                      
+                          {totalStars >= reward.star_cost ? (
+                            <button className="btn btn-square btn-ghost">
+                              <img className="w-5" src="https://img.icons8.com/?size=100&id=85026&format=png&color=000000" alt="Redeem" />
+                            </button>
+                          ) :
+                          (
+                            <button className="btn btn-square btn-ghost" disabled>
+                              <img className="w-5" src="https://img.icons8.com/?size=100&id=85026&format=png&color=ffffff" alt="Redeem" />
+                            </button>
+                          )} 
                     </div>
 
                     
@@ -88,9 +90,9 @@ export default function Page() {
             </div>
             
             <h2 className="text-3xl">Your Activities</h2>
-            <div className="flex flex-row gap-5">
+            <div className="grid grid-cols-2 gap-5">
               {activities.map((activity) => (
-                <Link href={`../../activity/${activity.id}`} key={activity.id} className="btn btn-primary w-100 h-50 text-4xl">
+                <Link href={`../../activity/${activity.id}`} key={activity.id} className="btn btn-primary w-100 h-30 text-2xl">
                   {activity.title}
                 </Link>
               ))}
