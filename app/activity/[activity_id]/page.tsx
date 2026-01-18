@@ -104,10 +104,10 @@ export default function Page() {
 
   if (activityFinished) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-5">
+      <div className="min-h-screen flex flex-col items-center justify-center gap-10">
         <h1 className="text-4xl">Activity complete.</h1>
         <h2 className="text-6xl text-primary">You earned {score} Stars!</h2>
-        <Link href={`../../child/${activityChildId}`} className="btn btn-primary">Continue</Link>
+        <Link href={`../../child/${activityChildId}`} className="btn btn-primary w-100 h-20 text-3xl">Continue</Link>
       </div>
     )
   }
@@ -130,7 +130,7 @@ export default function Page() {
               <button
                 key={currentQuestionIndex + "-" + choice}
                 onClick={() => setSelectedChoice(choice)}
-                className={`w-60 h-30 text-4xl btn btn-primary ${selectedChoice == choice ? "" : "btn-outline"}`}
+                className={`w-80 h-40 text-4xl btn btn-primary ${selectedChoice == choice ? "" : "btn-outline"}`}
               >
                 {choice}
               </button>
@@ -145,7 +145,7 @@ export default function Page() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-5">
         <h1 className="text-6xl">{activityTitle} Activity</h1>
-        <button onClick={() => setActivityStarted(true)} className="btn btn-primary w-150 h-25 text-4xl">Start</button>
+        <button onClick={() => setActivityStarted(true)} className="btn btn-primary w-200 h-20 text-4xl">Start</button>
         <Link href={`../../child/${activityChildId}`} className="btn btn-ghost">Go Back</Link>
       </div>
     )

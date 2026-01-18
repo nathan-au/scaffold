@@ -262,7 +262,7 @@ export default function Page() {
                   <label className="label">Reward Name</label>
                   <input type="text" className="input w-full" placeholder="e.g. Chocolate Chip Cookie" value={rewardName} onChange={(e) => setRewardName(e.target.value)} required/>
                   <label className="label">Cost (Stars)</label>
-                  <input type="number" className="input w-full" placeholder="e.g. 40" value={rewardCost} onChange={(e) => setRewardCost(Number(e.target.value))} required min="1"/>
+                  <input type="number" className="input w-full" placeholder="e.g. 5" value={rewardCost} onChange={(e) => setRewardCost(Number(e.target.value))} required min="1"/>
 
                   <div className="flex flex-row mt-4 justify-center gap-2">
                     <button type="button" className="btn btn-ghost"onClick={() => {
@@ -356,7 +356,7 @@ export default function Page() {
 
                     ) :
                     (
-                      <p className="text-center p-2 opacity-50">Enter a prompt above and click generate to see questions!</p>
+                      <p className="text-center pt-2 opacity-50">Enter a prompt above and click generate to see questions!</p>
 
                     )}
 

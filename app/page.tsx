@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Page() {
   return (
@@ -12,8 +13,9 @@ export default function Page() {
           </div>
           <div className="navbar-center">
               <ul className="menu menu-horizontal px-1">
-                <li><Link href="#features">Solution</Link></li>
-                <li><Link href="#faq">FAQ</Link></li>
+                <li><a>Features</a></li>
+                <li><a>How It Works</a></li>
+                <li><a>FAQ</a></li>
               </ul>
           </div>
           <div className="navbar-end gap-2">
@@ -23,7 +25,10 @@ export default function Page() {
           </div>
         </div>
         <div className="hero-content w-full">
-          <div className="flex flex-col gap-5 items-center">
+          <div className="flex flex-col gap-5 items-center text-center">
+            <div className="w-50 h-50 relative">
+              <Image src="/bee.png" alt="Bee" fill></Image>
+            </div>
             <p className="text-8xl">Turn Screen Time Into Learning Time</p>
             <p className="text-4xl">Scaffold is a reward-based learning reinforcement platform that transforms idle screen time into meaningful growth.</p>
             
@@ -32,15 +37,8 @@ export default function Page() {
           
         </div>
       </div>
-      <div className="flex flex-col items-center w-full gap-5 p-10">
+      {/* <div className="flex flex-col items-center w-full gap-5 p-10">
 
-        <div className="mockup-browser border-base-300 border w-full">
-          <div className="mockup-browser-toolbar">
-            <div className="input">https://mykidsknowtoomuchbrainrot.tech/</div>
-          </div>
-          <div className="grid place-content-center border-t border-base-300 h-80">Hello!</div>
-        </div>
-        
         <h2 className="text-5xl">Too Much Roblox, Not Enough Knowledge</h2>
 
         <div className=" flex flex-col gap-5">
@@ -84,7 +82,7 @@ export default function Page() {
 
 
 
-      </div>
+      </div> */}
     </div>
   );
 }

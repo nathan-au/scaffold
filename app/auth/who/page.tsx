@@ -37,8 +37,9 @@ export default function Page() {
             {children.map((child) => (
               <Link href={`/child/${child.id}`} className="w-60 h-30 text-3xl btn btn-primary" key={child.id}>{child.first_name}</Link>
             ))}
+            <Link href="../../parent/dashboard" className="w-60 h-30 text-3xl btn btn-primary" key={"parent"}>{"Parent"}</Link>
+
           </div>
-          <Link href="../../parent/dashboard" className="btn-wide btn btn-primary" key={"parent"}>{"Parent"}</Link>
         </div>
       )}
     </div>
